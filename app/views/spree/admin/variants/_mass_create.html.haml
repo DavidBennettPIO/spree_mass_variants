@@ -1,0 +1,7 @@
+%hr
+%h2 Mass Create
+= form_tag "/admin/products/#{@product.permalink}/variants/mass_create" do
+  - for option_type in @product.option_types
+    = option_type.presentation
+    = select_tag "option_types[#{option_type.name}]", options_from_collection_for_select(option_type.option_values.all, "id", "presentation"), :multiple => true, :style => 'height:120px;'
+  = submit_tag 'Mass Create'
